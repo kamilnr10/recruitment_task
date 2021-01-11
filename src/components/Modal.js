@@ -3,8 +3,10 @@ import React, { Component } from "react";
 class Modal extends Component {
   state = {
     currentItem: {
-      key: "",
+      key: Date.now(),
       text: "",
+      sub_items : [],
+      type : "simple"
     },
   };
 
@@ -13,6 +15,8 @@ class Modal extends Component {
       currentItem: {
         key: Date.now(),
         text: e.target.value,
+        sub_items : [],
+        type : "simple"
       },
     });
   };
