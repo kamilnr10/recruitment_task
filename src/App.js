@@ -98,7 +98,7 @@ class App extends Component {
           <Modal closeModalFn={this.closeModal} list={this.state.items} />
         ) : (
           <section className="app">
-            <Header />
+            <Header text={"People"} styles={"header"} />
             <div className="items-container">
               <ItemsList
                 items={this.state.items}

@@ -1,7 +1,7 @@
 import React from "react";
 
-const Header = () => {
-  return <h3 className="header">People</h3>;
+const Header = (props) => {
+  return <h3 className={props.styles}>{props.text}</h3>;
 };
 
 export default Header;

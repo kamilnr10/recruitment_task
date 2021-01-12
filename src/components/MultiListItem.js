@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
+import Header from "./Header";
+import styles from "./MultiListItem.module.css";
 
 class MultiListItem extends Component {
   state = {
@@ -29,19 +31,27 @@ class MultiListItem extends Component {
   };
 
   render() {
-    const sub_list = this.props.item.sub_items.map((item) => (
+    const sub_list2 = this.props.item.sub_items.map((item) => (
       <div
+        className="items-container"
         key={Math.floor(Math.random() * Math.floor(1000000))}
-        className="box3"
       >
-        <div className="box4">{item}</div>
-        <div className="box5">
-          <button
-            onClick={() => this.deleteSubItem(item)}
-            className="minus-button"
-          >
-            &#8722;
-          </button>
+        <div className={styles.sublist_item}>
+          <div className={styles.sublist_box1}></div>
+          <div className={styles.sublist_box2}></div>
+          <div className={styles.sublist_box3}>
+            <div className={styles.sublist_box4}>
+              <p className={styles.sublist_box4_text}>{item}</p>
+            </div>
+            <div className={styles.sublist_box5}>
+              <button
+                onClick={() => this.deleteSubItem(item)}
+                className="minus-button"
+              >
+                &#8722;
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     ));
@@ -52,31 +62,23 @@ class MultiListItem extends Component {
           <div className="box1"></div>
           <div className="box2"></div>
           <div className="box3">
-            <div className="box4">{this.props.item.text}</div>
-            <div className="box5">
-              <button
-                onClick={() => this.deleteItem(this.props.item.key)}
-                className="minus-button"
-              >
-                &#8722;
-              </button>
-            </div>
-            <div className="box6">{sub_list}</div>
-            <input
-              type="text"
-              placeholder="Enter text"
-              value={this.state.new_item}
-              onChange={this.handleInput}
-            />
-
-            <div className="button">
-              {/* <button onClick={() => this.addSubItem()} className="plus-button">
-                &#43;
-              </button> */}
-              <button onClick={this.openModal} className="plus-button">
-                &#43;
-              </button>
-              {/* <Button openModalFn={this.openModal} /> */}
+            <div className="box4">
+              <div className={styles.sublist_wrapper}>
+                <div className={styles.sublist_main}>
+                  <Header
+                    text={this.props.item.text}
+                    styles={styles.sublist_header}
+                  />
+                  <button
+                    onClick={() => this.deleteItem(this.props.item.key)}
+                    className="minus-button"
+                  >
+                    &#8722;
+                  </button>
+                </div>
+                {sub_list2}
+                <Button openModalFn={this.openModal} />
+              </div>
             </div>
           </div>
         </div>
