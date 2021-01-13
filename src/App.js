@@ -28,13 +28,15 @@ const initialStateItems = [
 class App extends Component {
   state = {
     isModalOpen: false,
+    type: "simple",
     items: [...initialStateItems],
   };
 
-  openModal = () => {
-    console.log("handleButton click");
+  openModal = (type) => {
+    console.log(type);
     this.setState({
       isModalOpen: true,
+      type: type,
     });
   };
   closeModal = () => {
@@ -43,18 +45,31 @@ class App extends Component {
     });
   };
 
-  addItem = (e) => {
-    e.preventDefault();
+  addItem = (type, key, text) => {
+    // this.setState((prevState) => ({
+    //   items: [...prevState.items, newItem],
+    // }));
+    // console.log(this.state.items);
+    // const newItem = {
+    //   key: Date.now(),
+    //   text: e.target.value,
+    // };
 
-    const newItem = {
-      name: e.target.value,
-      sub_items: [],
-    };
-
-    this.setState((prevState) => ({
-      items: [...prevState.items, newItem],
-    }));
-    console.log(this.state.items);
+    if (type === "simple") {
+      const newItem = {
+        key: key,
+        text: text,
+      };
+      let items = this.state.items;
+      items.push(newItem);
+      this.closeModal();
+    }
+    // if (type === "multi") {
+    //   let items = [...this.state.items];
+    //   let index = items.findIndex((item) => item.key === key);
+    //   items[index].sub_items.push(new_item);
+    //   this.closeModal();
+    // }
   };
 
   deleteItemFn = (key) => {
@@ -95,7 +110,12 @@ class App extends Component {
     return (
       <>
         {this.state.isModalOpen ? (
-          <Modal closeModalFn={this.closeModal} list={this.state.items} />
+          <Modal
+            closeModalFn={this.closeModal}
+            list={this.state.items}
+            addItemFn={this.addItem}
+            type={this.state.type}
+          />
         ) : (
           <section className="app">
             <Header text={"People"} styles={"header"} />
@@ -108,7 +128,7 @@ class App extends Component {
                 openModalFn={this.openModal}
               />
             </div>
-            <Button openModalFn={this.openModal} />
+            <Button openModalFn={() => this.openModal(this.state.type)} />
           </section>
         )}
       </>

@@ -2,32 +2,41 @@ import React, { Component } from "react";
 
 class Modal extends Component {
   state = {
-    currentItem: {
-      key: Date.now(),
-      text: "",
-      sub_items : [],
-      type : "simple"
-    },
+    text: "",
   };
 
   handleInput = (e) => {
     this.setState({
-      currentItem: {
-        key: Date.now(),
-        text: e.target.value,
-        sub_items : [],
-        type : "simple"
-      },
+      text: e.target.value,
     });
   };
 
-  addNewItem = (e) => {
-    e.preventDefault();
-    const newItem = this.state.currentItem;
-    const items = this.props.list;
-    items.push(newItem);
-    console.log(this.props.list);
-    this.props.closeModalFn();
+  // addNewItem = (e, key) => {
+  // console.log(this.props.type);
+  // console.log(this.props.list);
+  // e.preventDefault();
+  // const newItem = this.state.currentItem;
+
+  // if (this.props.type === "simple") {
+  // console.log(newItem);
+  // const items = this.props.list;
+  // items.push(newItem);
+  // console.log(this.props.list);
+  // this.props.closeModalFn();
+  // }
+  // if (this.props.type === "multi") {
+  //   let items = [...this.props.list];
+  //   console.log(items);
+
+  //   let index = items.findIndex((item) => item.key === key);
+  //   items[index].sub_items.push(newItem);
+  // this.props.closeModalFn();
+  // }
+  // };
+
+  addNewSubItem = (e) => {
+    e.target.preventDefault();
+    this.props.addItem(this.props.type, this.state.currentItem.key);
   };
 
   render() {
@@ -35,11 +44,11 @@ class Modal extends Component {
       <>
         <div className="modal-background">
           <div className="modal">
-            <form onSubmit={this.addNewItem} className="modal-form">
+            <form onSubmit={this.addNewSubItem} className="modal-form">
               <input
                 type="text"
                 placeholder="Enter text"
-                value={this.state.currentItem.text}
+                value={this.state.text}
                 onChange={this.handleInput}
               />
               <button type="submit" className="modal-add-item-button">
