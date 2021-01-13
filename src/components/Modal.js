@@ -36,7 +36,8 @@ class Modal extends Component {
 
   addNewSubItem = (e) => {
     e.target.preventDefault();
-    this.props.addItem(this.props.type, this.state.currentItem.key);
+    const key = Date.now();
+    this.props.addItem(this.props.type, key, this.state.text);
   };
 
   render() {

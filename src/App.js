@@ -40,6 +40,7 @@ class App extends Component {
     });
   };
   closeModal = () => {
+    console.log(this.state.type);
     this.setState({
       isModalOpen: false,
     });
@@ -54,22 +55,27 @@ class App extends Component {
     //   key: Date.now(),
     //   text: e.target.value,
     // };
-
+    const newItem = {
+      key: key,
+      text: text,
+    };
     if (type === "simple") {
-      const newItem = {
-        key: key,
-        text: text,
-      };
       let items = this.state.items;
       items.push(newItem);
+      this.setState({
+        items: items,
+      });
       this.closeModal();
     }
-    // if (type === "multi") {
-    //   let items = [...this.state.items];
-    //   let index = items.findIndex((item) => item.key === key);
-    //   items[index].sub_items.push(new_item);
-    //   this.closeModal();
-    // }
+    if (type === "multi") {
+      let items = [...this.state.items];
+      let index = items.findIndex((item) => item.key === key);
+      items[index].sub_items.push(newItem);
+      this.setState({
+        items: items,
+      });
+      this.closeModal();
+    }
   };
 
   deleteItemFn = (key) => {
