@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import Header from "./Header";
-import Modal from "./Modal";
+// import Modal from "./Modal";
 import styles from "./MultiListItem.module.css";
 
 class MultiListItem extends Component {
@@ -18,9 +18,9 @@ class MultiListItem extends Component {
     this.props.deleteSubItemFn(this.props.item.key, item);
   };
 
-  addSubItem = () => {
-    this.props.addSubItemFn(this.props.item.key, this.state.new_item);
-  };
+  // addSubItem = () => {
+  //   this.props.addSubItemFn(this.props.item.key, this.state.new_item);
+  // };
 
   handleInput = (e) => {
     this.setState({
@@ -28,9 +28,9 @@ class MultiListItem extends Component {
     });
   };
 
-  openModal = () => {
-    this.props.openModalFn(this.state.type);
-  };
+  // openModal = () => {
+  //   this.props.openModalFn("multi",);
+  // };
 
   render() {
     const sub_list2 = this.props.item.sub_items.map((item) => (
@@ -80,7 +80,9 @@ class MultiListItem extends Component {
                 </div>
                 {sub_list2}
                 <Button
-                  openModalFn={() => this.props.openModalFn(this.state.type)}
+                  openModalFn={() =>
+                    this.props.openModalFn(this.state.type, this.props.item.key)
+                  }
                 />
               </div>
             </div>

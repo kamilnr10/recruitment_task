@@ -27,59 +27,54 @@ const initialStateItems = [
 
 class App extends Component {
   state = {
-    isModalOpen: false,
-    type: "simple",
     items: [...initialStateItems],
+    modal: {
+      open: false,
+      item_type: "simple",
+      parent_key: false,
+    },
   };
 
-  openModal = (type) => {
-    // console.log(type);
-    console.log(this.state.type);
-
+  openModal = (type, parent_key = false) => {
     this.setState({
-      isModalOpen: true,
-      type: type,
+      modal: {
+        open: true,
+        item_type: type,
+        parent_key: parent_key,
+      },
     });
   };
 
   closeModal = () => {
-    console.log(this.state.type);
     this.setState({
-      isModalOpen: false,
-      type: "",
+      modal: {
+        open: false,
+        item_type: "simple",
+        parent_key: false,
+      },
     });
   };
 
-  addItem = (type, key, text) => {
-    // this.setState((prevState) => ({
-    //   items: [...prevState.items, newItem],
-    // }));
-    // console.log(this.state.items);
-    // const newItem = {
-    //   key: Date.now(),
-    //   text: e.target.value,
-    // };
-    const newItem = {
-      key: key,
-      text: text,
-    };
-    if (type === "simple") {
-      let items = this.state.items;
-      items.push(newItem);
-      this.setState({
-        items: items,
+  addItem = (text) => {
+    let items = [...this.state.items];
+    if (this.state.modal.item_type === "simple") {
+      items.push({
+        key: Date.now(),
+        text: text,
+        type: "simple",
+        sub_items: [],
       });
-      this.closeModal();
+    } else {
+      let index = items.findIndex(
+        (item) => item.key === this.state.modal.parent_key
+      );
+      items[index].sub_items.push(text);
     }
-    if (type === "multi") {
-      let items = [...this.state.items];
-      let index = items.findIndex((item) => item.key === key);
-      items[index].sub_items.push(newItem);
-      this.setState({
-        items: items,
-      });
-      this.closeModal();
-    }
+
+    this.setState({
+      items: items,
+    });
+    this.closeModal();
   };
 
   deleteItemFn = (key) => {
@@ -119,13 +114,8 @@ class App extends Component {
   render() {
     return (
       <>
-        {this.state.isModalOpen ? (
-          <Modal
-            closeModalFn={this.closeModal}
-            list={this.state.items}
-            addItemFn={this.addItem}
-            type={this.state.type}
-          />
+        {this.state.modal.open ? (
+          <Modal closeModalFn={this.closeModal} addItemFn={this.addItem} />
         ) : (
           <section className="app">
             <Header text={"People"} styles={"header"} />
@@ -133,12 +123,12 @@ class App extends Component {
               <ItemsList
                 items={this.state.items}
                 deleteItemFn={this.deleteItemFn}
-                addSubItemFn={this.addSubItemFn}
+                addItemFn={this.addItem}
                 deleteSubItemFn={this.deleteSubItemFn}
                 openModalFn={this.openModal}
               />
             </div>
-            <Button openModalFn={() => this.openModal(this.state.type)} />
+            <Button openModalFn={() => this.openModal("simple")} />
           </section>
         )}
       </>

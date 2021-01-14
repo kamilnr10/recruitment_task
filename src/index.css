@@ -39,7 +39,7 @@ justify-content: center;
   align-items: center;
   border: 8px solid white;
   background: rgb(126,242,168);
-  background: linear-gradient(0deg, rgba(126,242,168,1) 0%, rgba(47,232,225,1) 100%);
+  background: linear-gradient(0deg, rgba(44,232,227,1) 0%, rgba(129,241,165,1) 100%);
   border: 7px solid white;
   box-shadow: 0px 10px 30px 0px rgba(47,232,225,0.5);
 	height: 50px;
