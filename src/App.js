@@ -33,16 +33,20 @@ class App extends Component {
   };
 
   openModal = (type) => {
-    console.log(type);
+    // console.log(type);
+    console.log(this.state.type);
+
     this.setState({
       isModalOpen: true,
       type: type,
     });
   };
+
   closeModal = () => {
     console.log(this.state.type);
     this.setState({
       isModalOpen: false,
+      type: "",
     });
   };
 
