@@ -12,6 +12,11 @@ class Modal extends Component {
   };
 
   addNewItem = () => {
+    const textLength = this.state.text.length;
+    if (!textLength || textLength > 8) {
+      alert("You can not add empty item to list / Maximum char length is 7");
+      return;
+    }
     this.props.addItemFn(this.state.text);
     this.setState({
       text: "",

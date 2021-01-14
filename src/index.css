@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .app {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 18px;
@@ -21,7 +27,7 @@
   text-shadow: 2px 1px 2px rgb(24, 24, 24, 0.3);
 }
 
-.items-container {
+.items_container {
   width: 400px;
   transform: translateX(100px);
   border-left: 1px solid #c9cdd7;
@@ -33,15 +39,15 @@ display: flex;
 justify-content: center;
 }
 
-.plus-button {
+.plus_button {
   display: flex;
   justify-content: center;
   align-items: center;
   border: 8px solid white;
   background: rgb(126,242,168);
-  background: linear-gradient(0deg, rgba(44,232,227,1) 0%, rgba(129,241,165,1) 100%);
+  background: linear-gradient(0deg, rgba(126,242,168,1) 0%, rgba(47,232,225,1) 100%);
   border: 7px solid white;
-  box-shadow: 0px 10px 30px 0px rgba(47,232,225,0.5);
+  box-shadow: 0px 10px 20px 0px rgba(47,232,225,0.5);
 	height: 50px;
 	width: 50px;
 	border-radius: 999px;
@@ -95,6 +101,7 @@ justify-content: center;
 }
 
 .box3 {
+  width: 400px;
   grid-column: 2/3;
   grid-row: 1/3;
   display: flex;
@@ -208,24 +215,6 @@ font-size: 20px;
   color: white;
 }
 
-:root {
-
-  --input-color: #99A3BA;
-  --input-border: #CDD9ED;
-  --input-background: #fff;
-  --input-placeholder: #CBD1DC;
-
-  --input-border-focus: #275EFE;
-
-  --group-color: var(--input-color);
-  --group-border: var(--input-border);
-  --group-background: #EEF4FF;
-
-  --group-color-focus: #fff;
-  --group-border-focus: var(--input-border-focus);
-  --group-background-focus: #678EFE;
-
-}
 
 .modal-form input {
   display: block;
@@ -245,13 +234,12 @@ font-size: 20px;
 }
 
 .modal-form input::placeholder {
-  color: var(--input-placeholder);
-
+  color: grey
 }
 
 .modal-form input:focus {
   outline: none;
-      border-color: var(--input-border-focus);
+  border-color: grey;
 }
 
 .multi-box-header {
@@ -278,3 +266,124 @@ font-size: 20px;
 }
 
 
+.red {
+  background-color: red;
+}
+
+.sublist_main {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sublist-items-container {
+  width: 250px;
+  transform: translateX(50px);
+  border-left: 1px solid #c9cdd7;
+}
+
+.sublist_header {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  margin: 0;
+  padding-left: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #c9cdd7;
+}
+
+.sublist_add_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 8px solid white;
+  background: rgb(126,242,168);
+  background: linear-gradient(0deg, rgba(126,242,168,1) 0%, rgba(47,232,225,1) 100%);
+  border: 7px solid white;
+  box-shadow: 0px 10px 10px 0px rgba(47,232,225,0.5);
+	height: 50px;
+	width: 50px;
+	border-radius: 999px;
+  position: relative;
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.sublist_button {
+  width: 200px;
+  margin-left: 25px;
+}
+
+.sublist_delete_btn {
+  padding-right: 50px;
+}
+
+.sublist_item {
+  display: grid;
+  grid-template-columns: 50px;
+  grid-template-rows: 50% 50%;
+  position: relative;
+  width: 100%;
+  padding: 20px 0 20px 0;
+}
+
+.sublist_box1 {
+  grid-column: 1 / 2;
+  border-bottom: 1px solid #c9cdd7;
+}
+
+.sublist_box2 {
+  grid-row: 2;
+}
+
+.sublist_box2::before {
+  content: "Or";
+  position: absolute;
+  transform: translate(-100%, -50%);
+  padding-right: 20px;
+  color: #c9cdd7;
+}
+
+.sublist_box3 {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  border-radius: 5px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid #c9cdd7;
+}
+
+.sublist_box4 {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 25px 20px 25px 20px;
+  font-weight: bold;
+}
+
+.sublist_box4_text {
+  width: 100%;
+}
+.sublist_box5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 25px;
+  /* border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; */
+}
+
+p {
+  width: 100%;
+}

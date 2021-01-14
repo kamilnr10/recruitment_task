@@ -1,6 +1,6 @@
 import React from "react";
-import SimpleListItem from "../components/SimpleListItem";
-import MultiListItem from "../components/MultiListItem";
+import SimpleListItem from "./SimpleListItem";
+import MultiListItem from "./MultiListItem";
 
 const ItemsList = ({
   items,

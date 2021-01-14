@@ -1,9 +1,9 @@
 import React from "react";
 
-const Button = ({ openModalFn }) => {
+const Button = ({ openModalFn, styles }) => {
   return (
-    <div className="button">
-      <button onClick={openModalFn} className="plus-button">
+    <div className={styles}>
+      <button onClick={openModalFn} className="sublist_add_btn">
         &#43;
       </button>
     </div>

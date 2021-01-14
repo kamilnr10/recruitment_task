@@ -119,7 +119,7 @@ class App extends Component {
         ) : (
           <section className="app">
             <Header text={"People"} styles={"header"} />
-            <div className="items-container">
+            <div className="items_container">
               <ItemsList
                 items={this.state.items}
                 deleteItemFn={this.deleteItemFn}
@@ -128,7 +128,10 @@ class App extends Component {
                 openModalFn={this.openModal}
               />
             </div>
-            <Button openModalFn={() => this.openModal("simple")} />
+            <Button
+              openModalFn={() => this.openModal("simple")}
+              styles={"button"}
+            />
           </section>
         )}
       </>

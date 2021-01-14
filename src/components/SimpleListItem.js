@@ -7,7 +7,9 @@ const List = (props) => {
         <div className="box1"></div>
         <div className="box2"></div>
         <div className="box3">
-          <div className="box4">{props.item.text}</div>
+          <div className="box4">
+            <p>{props.item.text}</p>
+          </div>
           <div className="box5">
             <button
               onClick={() => props.deleteItemFn(props.item.key)}
